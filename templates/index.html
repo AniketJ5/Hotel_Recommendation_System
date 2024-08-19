@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hotel Recommendation System</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Hotel Recommendation System</h1>
+        <form method="POST">
+            <div class="form-group">
+                <label for="hotel_name">Hotel Name:</label>
+                <input type="text" id="hotel_name" name="hotel_name" required>
+            </div>
+            <div class="form-group">
+                <label for="reviewer_nationality">Location:</label>
+                <input type="text" id="reviewer_nationality" name="reviewer_nationality" required>
+            </div>
+            <div class="form-group">
+                <label for="rec_type">Recommendation Type:</label>
+                <select id="rec_type" name="rec_type">
+                    <option value="user">User-Based</option>
+                    <option value="item">Item-Based</option>
+                    <option value="content">Content-Based</option>
+                </select>
+            </div>
+            <button type="submit">Get Recommendations</button>
+        </form>
+        {% if recommendations %}
+        <h2>Recommendations:</h2>
+        <ul>
+            {% for rec in recommendations %}
+            <li>{{ rec }}</li>
+            {% endfor %}
+        </ul>
+        {% endif %}
+    </div>
+</body>
+</html>
